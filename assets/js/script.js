@@ -15,7 +15,7 @@ h1El.textContent = "Welcome to the Javascript Quiz!";
 quiz.appendChild(h1El);
 // Displays parameters of test on front page
 pEl.setAttribute("style", "font-size: 30px; text-align: center;")
-pEl.textContent = "Use the following quiz to study your Javascript knowledge. Each question will earn you points but each wrong answer will subtract time from the clock.";
+pEl.textContent = "Use the following quiz to study your Javascript knowledge. When you hit the start button the questions will appear. If you answer incorrectly your answer will be highlighted in red and 10 seconds removed from the clock. When you select the correct answer the next question will be displayed. Good luck!";
 quiz.appendChild(pEl);
 // Displays button that begins quiz
 start.setAttribute("style", "font-size: 24px; background-color: purple; width: 20%; cursor: pointer;");
@@ -60,7 +60,6 @@ function handleAnswer(answerEl, q, answerKey) {
   answerEl.addEventListener("click", function() {
     if (q.answers[answerKey] == q.correctAnswer) {
       count ++;
-      answerEl.setAttribute("style", "font-size: 24px; width: 100%; cursor: pointer; background-color: #228b22;");
       questionIndex ++;
       displayQuestion();
       console.log(count);
@@ -74,6 +73,10 @@ function handleAnswer(answerEl, q, answerKey) {
 }
 
 function displayQuestion() {
+  var clearColors = [a1, a2, a3, a4]
+      for (var i = 0; i < clearColors.length; i ++) {
+        clearColors[i].setAttribute("style", "font-size: 24px; width: 100%; cursor: pointer;");
+      }
   var q = questions[questionIndex];
   h1El.textContent = q.question;
   a1.textContent = q.answers.a1;
