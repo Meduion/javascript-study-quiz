@@ -95,14 +95,7 @@ function countdown() {
     } else {
       timerEl.textContent = "Time Up!";
       clearInterval(timeInterval);
-      list.remove();
-      h1El.textContent = "Thanks for playing. Your score is " + count + "! Please record your initials below.";
-      quiz.appendChild(scoreForm);
-      scoreButton.textContent = "Save";
-      scoreButton.addEventListener("click", function(event) {
-        event.preventDefault;
-        localStorage.setItem("scoreRecord", JSON.stringify(scoreRecord));
-      });
+      displayScores();
       quiz.appendChild(scoreButton);
     }
   }, 1000);
@@ -136,15 +129,7 @@ function handleAnswer(answerEl, q, answerKey) {
       displayQuestion();
       } else {
         clearInterval(timeInterval);
-        list.remove();
-        h1El.textContent = "Thanks for playing. Your score is " + count + "! Please record your initials below.";
-        quiz.appendChild(scoreForm);
-        scoreButton.textContent = "Save";
-        scoreButton.addEventListener("click", function(event) {
-          event.preventDefault;
-          localStorage.setItem("scoreRecord", JSON.stringify(scoreRecord));
-        })
-        quiz.appendChild(scoreButton);
+        displayScores();
       }
       console.log(count);
       console.log(questionIndex);
@@ -154,6 +139,18 @@ function handleAnswer(answerEl, q, answerKey) {
       console.log(count);
     }
   });
+}
+
+function displayScores() {
+  list.remove();
+  h1El.textContent = "Thanks for playing. Your score is " + count + "! Please record your initials below.";
+  quiz.appendChild(scoreForm);
+  scoreButton.textContent = "Save";
+  scoreButton.addEventListener("click", function(event) {
+    event.preventDefault;
+    localStorage.setItem("scoreRecord", JSON.stringify(scoreRecord));
+  })
+  quiz.appendChild(scoreButton);
 }
 
 // Decreases timer by 10 seconds when wrong answer selected.
