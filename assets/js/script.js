@@ -8,7 +8,8 @@ var a1 = document.createElement("button");
 var a2 = document.createElement("button");
 var a3 = document.createElement("button");
 var a4 = document.createElement("button");
-var scoreForm = document.createElement("input");
+var scoreForm = document.createElement("form");
+var scoreInput = document.createElement("input");
 var scoreButton = document.createElement("button")
 
 
@@ -17,6 +18,8 @@ var count = 0;
 
 // Creates variable to track questions
 var questionIndex = 0;
+
+var inputValue;
 
 // Creates variable to set time on timer
 var timeLeft = 75;
@@ -47,12 +50,6 @@ var questions = [
     correctAnswer: "console.log()"
   }
 ];
-
-// Creates Object for recording highscores
-var scoreRecord = {
-  initials: scoreForm.value,
-  score: count
-};
 
 // Creates elements for front page of website
 h1El.setAttribute("style", "font-size: 50px; text-align: center;");
@@ -131,12 +128,9 @@ function handleAnswer(answerEl, q, answerKey) {
         clearInterval(timeInterval);
         displayScores();
       }
-      console.log(count);
-      console.log(questionIndex);
     } else {
       wrongAnswer();
       answerEl.setAttribute("style", "font-size: 24px; width: 100%; cursor: pointer; background-color: #b22222;");
-      console.log(count);
     }
   });
 }
@@ -145,12 +139,24 @@ function displayScores() {
   list.remove();
   h1El.textContent = "Thanks for playing. Your score is " + count + "! Please record your initials below.";
   quiz.appendChild(scoreForm);
+  scoreForm.appendChild(scoreInput);
   scoreButton.textContent = "Save";
+  scoreForm.appendChild(scoreButton);
+  console.log(inputValue);
   scoreButton.addEventListener("click", function(event) {
     event.preventDefault;
-    localStorage.setItem("scoreRecord", JSON.stringify(scoreRecord));
+    logScores();
   })
-  quiz.appendChild(scoreButton);
+  console.log(inputValue);
+}
+
+function logScores() {
+  inputValue = scoreInput.value
+  var scoreRecord = {
+    initials: inputValue,
+    score: count
+  };
+  localStorage.setItem("scoreRecord", JSON.stringify(scoreRecord));
 }
 
 // Decreases timer by 10 seconds when wrong answer selected.
@@ -160,6 +166,4 @@ function wrongAnswer() {
 
 /* Questions for Tutor
 1) Penalty applied double on second question for wrong answer, once on right answer when it shouldn't be applied
-2) Making local storage accurately record form data. It's recording data but not the userinput or score correctly.
-3) Making Save button reset the game for a new round.
 */
