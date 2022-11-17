@@ -21,6 +21,7 @@ var questionIndex = 0;
 // Creates variable to set time on timer
 var timeLeft = 75;
 
+// Creates timeInterval variable but leaves it undefined to be defined in countdown() but accessible for terminating quiz when all questions finished in handleAnswer()
 var timeInterval;
 
 // Creates array of objects to hold questions, all created in the same way so they can be referenced later
