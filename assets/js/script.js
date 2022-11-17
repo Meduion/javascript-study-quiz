@@ -19,6 +19,7 @@ var count = 0;
 // Creates variable to track questions
 var questionIndex = 0;
 
+// Creates undefined variable for input of user initials, defined later when user submits initials
 var inputValue;
 
 // Creates variable to set time on timer
@@ -48,6 +49,36 @@ var questions = [
       a4: "console.show"
     },
     correctAnswer: "console.log()"
+  },
+  {
+    question: "What does '===' mean?",
+    answers: {
+      a1: "Equal in value",
+      a2: "Equal in type and value",
+      a3: "Does not equal",
+      a4: "Equals and includes"
+    },
+    correctAnswer: "Equal in type and value"
+  },
+  {
+    question: "What does the alert() function do?",
+    answers: {
+      a1: "Causes the screen to flash red",
+      a2: "Displays an alert box with a message and an OK button",
+      a3: "Plays a loud sound to alert the user",
+      a4: "Display a siren animation"
+    },
+    correctAnswer: "Displays an alert box with a message and an OK button"
+  },
+  {
+    question: "What symbols enclose an array?",
+    answers: {
+      a1: "{}",
+      a2: "||",
+      a3: "()",
+      a4: "[]"
+    },
+    correctAnswer: "[]"
   }
 ];
 
