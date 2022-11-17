@@ -69,16 +69,6 @@ var questions = [
       a4: "Display a siren animation"
     },
     correctAnswer: "Displays an alert box with a message and an OK button"
-  },
-  {
-    question: "What symbols enclose an array?",
-    answers: {
-      a1: "{}",
-      a2: "||",
-      a3: "()",
-      a4: "[]"
-    },
-    correctAnswer: "[]"
   }
 ];
 
@@ -152,6 +142,7 @@ function handleAnswer(answerEl, q, answerKey) {
   answerEl.addEventListener("click", function() {
     if (q.answers[answerKey] == q.correctAnswer) {
       count ++;
+      console.log(count)
       questionIndex ++;
       if (questionIndex < questions.length) {
       displayQuestion();
@@ -173,12 +164,10 @@ function displayScores() {
   scoreForm.appendChild(scoreInput);
   scoreButton.textContent = "Save";
   scoreForm.appendChild(scoreButton);
-  console.log(inputValue);
   scoreButton.addEventListener("click", function(event) {
     event.preventDefault;
     logScores();
   })
-  console.log(inputValue);
 }
 
 function logScores() {
@@ -197,4 +186,5 @@ function wrongAnswer() {
 
 /* Questions for Tutor
 1) Penalty applied double on second question for wrong answer, once on right answer when it shouldn't be applied
+2) Handle answer loops one time too many and adds extra 1 point to score
 */
