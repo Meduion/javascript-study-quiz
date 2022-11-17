@@ -21,6 +21,9 @@ var questionIndex = 0;
 // Creates variable to set time on timer
 var timeLeft = 75;
 
+// Creates timeInterval variable but leaves it undefined to be defined in countdown() but accessible for terminating quiz when all questions finished in handleAnswer()
+var timeInterval;
+
 // Creates array of objects to hold questions, all created in the same way so they can be referenced later
 var questions = [
   {
@@ -85,15 +88,10 @@ start.addEventListener("click", function() {
 
 // Timer function, begins countdown and takes user to score entry when time's up.
 function countdown() {   
-  // var questionEnd = questions.length==questionIndex;
-  // console.log(questionEnd);
-  var timeInterval = setInterval(function () {
+  timeInterval = setInterval(function () {
     if (timeLeft > 0) {
       timerEl.textContent = "Time: " + timeLeft;
       timeLeft--;
-    // } else if (timeLeft > 0 && questionEnd) { //Why doesn't this work?
-    //   timerEl.textContent = timeLeft;
-    //   clearInterval(timeInterval);
     } else {
       timerEl.textContent = "Time Up!";
       clearInterval(timeInterval);
@@ -137,6 +135,7 @@ function handleAnswer(answerEl, q, answerKey) {
       if (questionIndex < questions.length) {
       displayQuestion();
       } else {
+        clearInterval(timeInterval);
         list.remove();
         h1El.textContent = "Thanks for playing. Your score is " + count + "! Please record your initials below.";
         quiz.appendChild(scoreForm);
@@ -163,8 +162,7 @@ function wrongAnswer() {
 }
 
 /* Questions for Tutor
-1) Making the timer stop counting down if user finishes quiz. Refer to commented code in function countdown()
-2) Penalty applied double on second question for wrong answer, once on right answer when it shouldn't be applied
-3) Making local storage accurately record form data. It's recording data but not the userinput or score correctly.
-4) Making Save button reset the game for a new round.
+1) Penalty applied double on second question for wrong answer, once on right answer when it shouldn't be applied
+2) Making local storage accurately record form data. It's recording data but not the userinput or score correctly.
+3) Making Save button reset the game for a new round.
 */
