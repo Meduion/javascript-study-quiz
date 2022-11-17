@@ -28,7 +28,7 @@ var timeLeft = 75;
 // Creates timeInterval variable but leaves it undefined to be defined in countdown() but accessible for terminating quiz when all questions finished in handleAnswer()
 var timeInterval;
 
-// Creates array of objects to hold questions, all created in the same way so they can be referenced later
+// Creates array of objects to hold questions, all created in the same way so they can be referenced later, any number more can be added
 var questions = [
   {
     question: "A function always features what paired symbol after its name?",
