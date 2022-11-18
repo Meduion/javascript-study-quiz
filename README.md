@@ -14,7 +14,7 @@ Website is deployed at the following address: https://meduion.github.io/javascri
 
 Screenshot of completed webpage:
 
-![Javascript Quiz Screenshot](./assets/images/quiz-screenshot.jpg)
+![Javascript Quiz Screenshot](./assets/images/quiz screenshot.jpg)
 
 ## Credits
   
