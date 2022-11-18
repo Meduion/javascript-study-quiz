@@ -22,6 +22,8 @@ var questionIndex = 0;
 // Creates undefined variable for input of user initials, defined later when user submits initials
 var inputValue;
 
+var scoresShown;
+
 // Creates variable to set time on timer
 var timeLeft = 75;
 
@@ -114,7 +116,6 @@ function countdown() {
       timerEl.textContent = "Time Up!";
       clearInterval(timeInterval);
       displayScores();
-      quiz.appendChild(scoreButton);
     }
   }, 1000);
 }
@@ -139,8 +140,10 @@ function displayQuestion() {
 
 // Reacts to user selection of questions, if question correct increases score count and questionIndex count and fires function to move to next question. If wrong answer highlights in color and fires time deduction function.
 function handleAnswer(answerEl, q, answerKey) {
-  answerEl.addEventListener("click", function() {
-    if (q.answers[answerKey] == q.correctAnswer) {
+  answerEl.addEventListener("click", function(event) {
+    if (scoresShown) { 
+      return;
+    } else if (q.answers[answerKey] !== q.correctAnswer) {
       count ++;
       console.log(count)
       questionIndex ++;
@@ -157,7 +160,9 @@ function handleAnswer(answerEl, q, answerKey) {
   });
 }
 
+// Function to add input fields for submitting initials for high score. Also defines the scoresShown variable so that it ends the handleAnswer function.
 function displayScores() {
+  scoresShown = true
   list.remove();
   h1El.textContent = "Thanks for playing. Your score is " + count + "! Please record your initials below.";
   quiz.appendChild(scoreForm);
@@ -170,6 +175,7 @@ function displayScores() {
   })
 }
 
+// Logs Initials input to local storage so they can be displayed on the high scores page
 function logScores() {
   inputValue = scoreInput.value
   var scoreRecord = {
@@ -184,7 +190,6 @@ function wrongAnswer() {
   timeLeft = timeLeft -10;
 }
 
-/* Questions for Tutor
-1) Penalty applied double on second question for wrong answer, once on right answer when it shouldn't be applied
-2) Handle answer loops one time too many and adds extra 1 point to score
+/* Remaining Bugs
+1) Penalty applied double on second question for wrong answer, once on right answer when it shouldn't be applied. I know this is because the addeventlisterner is within the handleAnswer() function and it gets applied again for every question that happens but didn't have time to refactor to remove this.
 */
