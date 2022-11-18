@@ -1,6 +1,3 @@
-# javascript-study-quiz
-Study up on your javascript terminology with this quiz!
-
 # Javascript Study Quiz
 
 ## Description
