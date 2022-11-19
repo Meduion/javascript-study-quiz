@@ -94,7 +94,6 @@ start.addEventListener("click", function() {
   countdown();
   start.remove();
   pEl.remove();
-  list.remove();
   quiz.appendChild(list);
   list.appendChild(a1);
   a1.setAttribute("style", "font-size: 24px; width: 100%; cursor: pointer;")
