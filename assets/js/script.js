@@ -66,9 +66,9 @@ var questions = [
     question: "What does the alert() function do?",
     answers: {
       a1: "Causes the screen to flash red",
-      a2: "Displays an alert box with a message and an OK button",
+      a2: "Display a siren animation",
       a3: "Plays a loud sound to alert the user",
-      a4: "Display a siren animation"
+      a4: "Displays an alert box with a message and an OK button"
     },
     correctAnswer: "Displays an alert box with a message and an OK button"
   }
@@ -94,6 +94,7 @@ start.addEventListener("click", function() {
   countdown();
   start.remove();
   pEl.remove();
+  list.remove();
   quiz.appendChild(list);
   list.appendChild(a1);
   a1.setAttribute("style", "font-size: 24px; width: 100%; cursor: pointer;")
@@ -132,21 +133,34 @@ function displayQuestion() {
   a2.textContent = q.answers.a2;
   a3.textContent = q.answers.a3;
   a4.textContent = q.answers.a4;
-  handleAnswer(a1, q, "a1");
-  handleAnswer(a2, q, "a2");
-  handleAnswer(a3, q, "a3");
-  handleAnswer(a4, q, "a4");
+  a1.addEventListener("click", function(event) {
+    event.preventDefault;
+    handleAnswer(a1, q, "a1");
+    });
+  a2.addEventListener("click", function(event) {
+    event.preventDefault;
+    handleAnswer(a2, q, "a2");
+    });
+  a3.addEventListener("click", function(event) {
+    event.preventDefault;
+    handleAnswer(a3, q, "a3");
+    });
+  a4.addEventListener("click", function(event) {
+    event.preventDefault;
+    handleAnswer(a4, q, "a4");
+  });
 }
 
 // Reacts to user selection of questions, if question correct increases score count and questionIndex count and fires function to move to next question. If wrong answer highlights in color and fires time deduction function.
 function handleAnswer(answerEl, q, answerKey) {
-  answerEl.addEventListener("click", function(event) {
+  // answerEl.addEventListener("click", function(event) {
     if (scoresShown) { 
       return;
-    } else if (q.answers[answerKey] !== q.correctAnswer) {
+    } else if (q.answers[answerKey] == q.correctAnswer) {
       count ++;
       console.log(count)
       questionIndex ++;
+      console.log(questionIndex);
       if (questionIndex < questions.length) {
       displayQuestion();
       } else {
@@ -157,8 +171,7 @@ function handleAnswer(answerEl, q, answerKey) {
       wrongAnswer();
       answerEl.setAttribute("style", "font-size: 24px; width: 100%; cursor: pointer; background-color: #b22222;");
     }
-  });
-}
+  }
 
 // Function to add input fields for submitting initials for high score. Also defines the scoresShown variable so that it ends the handleAnswer function.
 function displayScores() {
